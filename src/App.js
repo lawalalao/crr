@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import ReceivedDeliveries from "./ReceivedDeliveries";
 import Delivery from './Delivery';
+import PersonnalInfo from "./PersonnalInfo";
+import Setting from "./Setting";
 
 
 function App() {
@@ -30,6 +32,12 @@ function App() {
           <Route path="/delivery">
             
             <Delivery />
+          </Route>
+          <Route path="/setting">
+            <Setting />
+          </Route>
+          <Route path="/personnalinfo">
+            <PersonnalInfo />
           </Route>
           <Route path="/">
             <Authentification />
