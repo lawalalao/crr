@@ -1,19 +1,20 @@
 
 import React , {useState} from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
+import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import './Authentification.css'
+import { Link, useHistory } from "react-router-dom";
 
 
 const Authentification=()=>{
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const history = useHistory();
     function handleSubmit(event) {
-        
+        //write button onclick function
     }
 
     const paperStyle={padding :20,height:'90vh',width:290, margin:"20px auto", backgroundColor:'rgb(225, 225, 250)'}
@@ -52,7 +53,9 @@ const Authentification=()=>{
                     }
                     label="se souvenir de moi"
                 />
+                <Link to="/home">
                 <Button onClick={handleSubmit} type='submit' color='primary' variant="contained" style={btnstyle} fullWidth >Se connecter</Button>
+                </Link>
                 <Typography style={passwordFrgetStyle} >
                     <p>Mot de passe oublie?={'>'}</p>
                     <Link href="#" style={passwordAdmincontact} >
