@@ -1,0 +1,29 @@
+.homeHeader{
+    display:flex;
+    margin-bottom:20px ;
+    
+}
+.homeHeader_icon{
+    margin-top: 18px;
+}
+
+.homeHeader_text{
+    margin-left:10px;
+  
+}
+.homeHeader_notificationIcon{
+    margin-top: 18px;
+    margin-left:170px;
+}
+.homeButton{
+    margin-top: 150px;
+}
+.homeButton1{
+    display:flex;
+}
+.homeButton1 button:hover{
+    color:blue;
+}
+.homeButton2 {
+    display: flex;
+}
