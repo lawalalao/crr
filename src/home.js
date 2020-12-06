@@ -5,6 +5,8 @@ import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import './home.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { Link, useHistory } from "react-router-dom";
+import ReceivedDeliveries from './ReceivedDeliveries';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
     const classes = useStyles();
+    const history = useHistory();
     const paperStyle={padding :20,height:'90vh',width:290, margin:"20px auto", backgroundColor:'rgb(225, 225, 250)'}
     return (
         <div>
@@ -38,9 +41,11 @@ function Home() {
                         </div>
                         <div  className="homeButton">
                             <div className="homeButton1">
-                                <Button onClick={() => { alert('commandes recues') }} variant="outlined" size="large" color="primary" className={classes.margin} >
-                                    Commandes Recues
-                                </Button>
+                                <Link to='/ReceivedDeliveries'>
+                                    <Button  variant="outlined" size="large" color="primary" className={classes.margin} >
+                                        Commandes Recues
+                                    </Button>
+                                </Link>
                                 <Button variant="outlined" size="large" color="primary" className={classes.margin}>
                                     Courses
                                 </Button>
