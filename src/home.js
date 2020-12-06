@@ -6,7 +6,7 @@ import './home.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link, useHistory } from "react-router-dom";
-import ReceivedDeliveries from './ReceivedDeliveries';
+
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -51,12 +51,16 @@ function Home() {
                                 </Button>
                             </div>
                             <div className="homeButton2">
+                                <Link to='/setting'>
                                 <Button variant="outlined" size="large" color="primary" className={classes.margin}>
                                     Parametres
                                 </Button>
+                                </Link>
+                                <Link to='/PersonnalInfo'>
                                 <Button variant="outlined" size="large" color="primary" className={classes.margin}>
                                     Info Personnelles
                                 </Button>
+                                </Link>
                             </div>
                         </div>
                     </Grid>
