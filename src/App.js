@@ -13,6 +13,7 @@ import ReceivedDeliveries from "./ReceivedDeliveries";
 import Delivery from './Delivery';
 import PersonnalInfo from "./PersonnalInfo";
 import Setting from "./Setting";
+import History from "./history"
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
           <Route path="/ReceivedDeliveries">
          
             <ReceivedDeliveries backButton="/home"/>
+          </Route>
+          <Route path="/historique">
+            <History backButton="/home"/>
           </Route>
           <Route path="/delivery">
             
