@@ -3,22 +3,16 @@ import { Grid,Paper} from '@material-ui/core'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import './home.css'
-import { makeStyles } from '@material-ui/core/styles';
+
 import Button from '@material-ui/core/Button';
 import { Link, useHistory } from "react-router-dom";
 
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
-}));
+
 
 function Home() {
-    const classes = useStyles();
+    const btnstyle={margin:'15px 0', height: '10vh' , width:'250px'};
+    
     const history = useHistory();
     const paperStyle={padding :20,height:'90vh',width:290, margin:"20px auto", backgroundColor:'rgb(225, 225, 250)'}
     return (
@@ -42,22 +36,20 @@ function Home() {
                         <div  className="homeButton">
                             <div className="homeButton1">
                                 <Link to='/ReceivedDeliveries'>
-                                    <Button  variant="outlined" size="large" color="primary" className={classes.margin} >
-                                        Commandes Recues
+                                    <Button  variant="outlined" size="large" color="default" style={btnstyle} >
+                                    Commandes Recues
                                     </Button>
                                 </Link>
-                                <Button variant="outlined" size="large" color="primary" className={classes.margin}>
-                                    Courses
-                                </Button>
-                            </div>
-                            <div className="homeButton2">
-                                <Link to='/setting'>
-                                <Button variant="outlined" size="large" color="primary" className={classes.margin}>
-                                    Parametres
+                                <Link to='/historique'>
+                                <Button variant="outlined" size="large" color="default" style={btnstyle}>
+                                    Historique
                                 </Button>
                                 </Link>
+                            </div>
+                            <div className="homeButton2">
+                               
                                 <Link to='/PersonnalInfo'>
-                                <Button variant="outlined" size="large" color="primary" className={classes.margin}>
+                                <Button variant="outlined" size="large" color="default" style={btnstyle}>
                                     Info Personnelles
                                 </Button>
                                 </Link>
