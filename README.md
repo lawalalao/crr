@@ -1,18 +1,19 @@
 # Chapchap PWA
+
 Service n°1 de la livraison de colis géolocalisée pour les professionnels au Togo.
 appli livreur
 
-## clone this repositery 
+## clone this repositery
 
- git clone https://github.com/chapchaptg/PWA
+git clone https://github.com/chapchaptg/PWA
 
 ## Development
 
 ### Prerequisites
+
 You need to have previously installed:
 
- - [node js version 14 or higher](https://nodejs.org/en/)
-
+-   [node js version 14 or higher](https://nodejs.org/en/)
 
 ## Available Scripts
 
@@ -20,7 +21,7 @@ In the project directory, you can run:
 
 ### `yarn install`
 
- to install dependencies
+to install dependencies
 
 ### `yarn start`
 
@@ -44,4 +45,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
