@@ -1,71 +1,129 @@
+import React, { useState } from "react";
+import {
+    Grid,
+    Paper,
+    Avatar,
+    TextField,
+    Button
+} from "@material-ui/core";
+import ok from './image/4.png'
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
-import React , {useState} from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import './Authentification.css'
-import { Link, useHistory } from "react-router-dom";
+import "./Authentification.css";
+import { useHistory } from "react-router-dom";
+import {authenticate} from "./api";
 
-
-const Authentification=()=>{
-    
+const Authentification = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [formError, setFormError] = useState("");
     const history = useHistory();
-    function handleSubmit(event) {
-        //write button onclick function
-    }
-
-    const paperStyle={padding :20,height:'90vh',width:290, margin:"20px auto", backgroundColor:'rgb(225, 225, 250)'}
-    const avatarStyle={backgroundColor:'#1bbd7e'}
-    const btnstyle={margin:'15px 0'}
-    const passwordFrgetStyle={display:'Flex', flexDirection:'row', color:"red", fontSize:'10px', marginTop:'25px'}
-    const passwordAdmincontact = { marginTop:"10px", marginLeft:"15px"}
+ 
     
-    return(
+    function handleSubmit(event) {
+
+        event.preventDefault();
+
+  authenticate(username, password).then(data => {
+            const Token = data.token
+            if (Token) {
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('user' , data.id)
+                sessionStorage.setItem('token', data.token)
+                sessionStorage.setItem('user', data.id)
+                history.push('/home')
+            } else {
+                
+                setFormError(data.message)
+            }
+            
+        })
+      
+    
+        
+    }
+  
+    const paperStyle = {
+        padding:20,
+        height: "90vh",
+        width: 290,
+        backgroundColor: "white",
+        margin: "20px auto",
+        color:"#1460BD"
+    };
+    
+    const imgstyle = {width:"100%", height:"35vh"}
+    const avatarStyle = { backgroundColor: "#1460BD", marginTop: "5px", top: "10%", left: "40%" };
+    const btnstyle = { margin: "15px 0", marginTop: "20px" ,backgroundColor:"#1460BD" , borderRadius: "12px",  boxShadow: "0 9px #FFFFFF", height:"7vh", fontSize:"20px"};
+    const txtstyle = {
+        marginTop: "25px",
+        color:"white"
+    };
+    
+
+    return (
         <Grid>
-            <Paper elevation={10} style={paperStyle} >
-                <Grid align='center' >
-                    <h1 className="loginTitle">Chapchap Livreur</h1>
-                    <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
-                    <h3 className="loginSubtitle">Veuillez vous connecter pour acceder a votre compte svp</h3>
+            <Paper elevation={24} style={paperStyle}>
+                <Grid align="center">
+                    
+                        <div className="container">
+                            <div className="ok">
+                            <img src={ok} alt="Snow" style={imgstyle}/>
+                            </div>
+                                    <Avatar style={avatarStyle}>
+                                        <LockOutlinedIcon />
+                                    </Avatar>
+                                    <h3 className="loginSubtitle">
+                                        Connexion
+                                    </h3>
+                               
+                        </div>
+                        
                 </Grid>
+                
                 <div className="loginForm">
-                    <TextField label='Utilisateur' placeholder='Entrez votre nom dutilisateur'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)} 
-                    fullWidth required
+                    <TextField
+                        label="Utilisateur"
+                        variant="filled"
+                        placeholder="Entrez votre numero de telephone"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        fullWidth
+                        required
+                        
                     />
-                    <TextField label='Mot de passe' placeholder='Entrez votre mot de passe'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)} 
-                    type='password' 
-                    fullWidth required
+                    <TextField
+                        label="Mot de passe"
+                        variant="filled"
+                        placeholder="Entrez votre mot de passe"
+                        value={password}
+                        style={txtstyle}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        fullWidth
+                        required
                     />
                 </div>
-                <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                    />
-                    }
-                    label="se souvenir de moi"
-                />
-                <Link to="/home">
-                <Button onClick={handleSubmit} type='submit' color='primary' variant="contained" style={btnstyle} fullWidth >Se connecter</Button>
-                </Link>
-                <Typography style={passwordFrgetStyle} >
-                    <p>Mot de passe oublie?={'>'}</p>
-                    <Link href="#" style={passwordAdmincontact} >
-                        contacter l'administrateur
-                    </Link>
-                </Typography>
+                <div className="loginButton">
+                <Button
+                    onClick={handleSubmit}
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    style={btnstyle}
+                    fullWidth
+                >
                 
+                    Se connecter
+                </Button>
+                </div>
+                <div className="loginError">
+                    {(formError !== "") ?  alert("identifiants incorrects") :""}
+                </div>
             </Paper>
         </Grid>
-    )
-}
+    );
+    
+};
+export default Authentification;
 
-export default Authentification

@@ -1,5 +1,28 @@
-.loginForm{
-
-    margin-top: 30px;
-
+.headerimage{
+    background-image: url("./image/4.png");
 }
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.loginForm {
+    margin-top: 15px;
+    color:aliceblue;
+}
+.loginSubtitle{
+    color:#1460BD;
+    margin-top: 10px;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+.loginError{
+    color:rgb(204, 31, 31);
+}
+

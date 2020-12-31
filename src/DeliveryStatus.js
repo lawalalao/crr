@@ -1,23 +1,22 @@
 import React,{useEffect} from "react";
 import { Grid, Paper } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import HomeIcon from "@material-ui/icons/Home";
+import Button from "@material-ui/core/Button";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import "./home.css";
-import {deliveryManInfo} from "./api";
+import "./DeliveryStatus.css";
 
-import Button from "@material-ui/core/Button";
+
 import { Link, useHistory } from "react-router-dom";
 
-function Home() {
+function DeliveryStatus({ backButton }) {
     
     const btnstyle = { margin: "15px 0", height: "10vh", width: "250px" , backgroundColor:"#1460BD", color:"#FFFFFF", boxShadow:" 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)"};
     const user = sessionStorage.getItem('user')
     
-    deliveryManInfo(user).then(data =>{
-     
-        sessionStorage.setItem('name', data.firstName)
        
-    })      
     const Nom = sessionStorage.getItem('name') 
     const history = useHistory();
     const paperStyle = {
@@ -32,28 +31,48 @@ function Home() {
             <Grid>
                 <Paper elevation={23} style={paperStyle}>
                     <Grid align="center">
-                        <div className="homeHeader">
-                            <div className="homeHeader_icon">
-                                <AccountCircleIcon />
-                            </div>
-                            <div className="homeHeader_text">
-                                <h4>{Nom}</h4>
-                            </div>
-
-                            <div className="homeHeader_notificationIcon">
-                                <NotificationsActiveIcon />
-                            </div>
+                        <div className="header">
+                            {backButton ? (
+                                <IconButton
+                                    onClick={() => history.replace(backButton)}
+                                >
+                                    <ArrowBackIosIcon
+                                        className="header__icon"
+                                        fontSize="large"
+                                    />
+                                </IconButton>
+                            ) : (
+                                <Link to="/home">
+                                    <IconButton>
+                                        <ArrowBackIosIcon
+                                            className="header__icon"
+                                            fontSize="large"
+                                        />
+                                    </IconButton>
+                                </Link>
+                            )}
+                            <Link to="/home">
+                                <IconButton>
+                                    <HomeIcon
+                                        className="header__icon"
+                                        fontSize="large"
+                                    />
+                                </IconButton>
+                            </Link>
+                        </div>
+                        <div>
+                            <p>okay status</p>
                         </div>
                         <div className="homeButton">
                             <div className="homeButton1">
-                                <Link to="/ReceivedDeliveries">
+                                <Link to="/">
                                     <Button
                                         variant="contained"
                                         size="large"
                                         color="default"
                                         style={btnstyle}
                                     >
-                                        Commandes Recues
+                                        demarrer
                                     </Button>
                                 </Link>
                                 <Link to="/historique">
@@ -63,7 +82,7 @@ function Home() {
                                         color="default"
                                         style={btnstyle}
                                     >
-                                        Historique
+                                        colis recupere
                                     </Button>
                                 </Link>
                             </div>
@@ -75,7 +94,7 @@ function Home() {
                                         color="default"
                                         style={btnstyle}
                                     >
-                                        Info Personnelles
+                                        en cours de livraisons
                                     </Button>
                                 </Link>
                             </div>
@@ -87,4 +106,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default DeliveryStatus;

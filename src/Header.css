@@ -3,11 +3,11 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid white;
+    /*background-color: */
+    
 }
 
 .header__logo {
     height: 40px;
     object-fit: contain;
 }
-
-
