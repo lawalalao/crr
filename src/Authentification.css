@@ -1,5 +1,14 @@
-.headerimage{
-    background-image: url("./image/4.png");
+.authContainer{
+    padding: 30px;
+    background-image: url(./image/5.jpeg) !important;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:center;
+    margin:auto;
+    width:100%;
+  
+    color:aliceblue;
+    height:100vh;
 }
 .container {
     position: relative;
@@ -13,12 +22,13 @@
     transform: translate(-50%, -50%);
 }
 .loginForm {
-    margin-top: 15px;
-    color:aliceblue;
+    margin-top: 30px;
+    
 }
 .loginSubtitle{
-    color:#1460BD;
+    color:rgba(255, 255, 255, 0.897);
     margin-top: 10px;
+    margin-left: 70px;
     font-size: 25px;
     text-transform: uppercase;
 }
