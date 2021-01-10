@@ -1,3 +1,19 @@
-.receivedDeliveries {
-    margin-top: 230px;
+.homeContainer1 {
+    padding: 25px;
+    background-image: url(./image/5.jpeg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+}
+.header{
+    margin-bottom: 40px;
+}
+.header__icon{
+    margin-right: 70px;
+}
+.header__icon2 {
+    margin-left: 75px;
 }

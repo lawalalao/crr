@@ -1,10 +1,44 @@
-.personnalInfo {
-    margin-top: 60px;
-    text-align: left;
-    margin-left: 15px;
-    padding: 25px;
-   color:#1460BD;
+.container{
+    padding: 30px;
+    background-image: url(./image/5.jpeg) !important;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position:center;
+    margin:auto;
+    width:100%;
+    height:110vh;
+    
+
 }
+.c1{
+    display:flex;
+  
+    margin-top: 40px;
+  
+    background-color:#1460BD;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.c1 h3{
+    color:white;
+    text-align: center;
+    padding: 10px;
+    
+    text-transform: uppercase;
+}
+
 .iconperson p {
     margin-left: 10px;
+    color:#1460BD;
+    
+}
+.title{
+    margin-top:20px;
+    font-size:25px;
+    border-radius: 10px;
+    background-color:#eff1f3;
+    border: 2px solid black;
+    color:#1460BD;
+    
 }

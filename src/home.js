@@ -1,12 +1,12 @@
-import React,{useEffect} from "react";
-import { Grid, Paper } from "@material-ui/core";
+import React from "react";
+import { Grid} from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import "./home.css";
 import {deliveryManInfo} from "./api";
 
 import Button from "@material-ui/core/Button";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
     
@@ -14,38 +14,29 @@ function Home() {
     const user = sessionStorage.getItem('user')
     
     deliveryManInfo(user).then(data =>{
-     
         sessionStorage.setItem('name', data.firstName)
-       
+
     })      
     const Nom = sessionStorage.getItem('name') 
-    const history = useHistory();
-    const paperStyle = {
-        padding: 15,
-        height: "90vh",
-        width: 290,
-        margin: "20px auto",
-        backgroundColor: "#FFFFFF",
-    };
-    return (
-        <div>
-            <Grid>
-                <Paper elevation={23} style={paperStyle}>
-                    <Grid align="center">
-                        <div className="homeHeader">
-                            <div className="homeHeader_icon">
-                                <AccountCircleIcon />
-                            </div>
-                            <div className="homeHeader_text">
-                                <h4>{Nom}</h4>
-                            </div>
+    
 
-                            <div className="homeHeader_notificationIcon">
-                                <NotificationsActiveIcon />
-                            </div>
+    return (
+        <div className="homeContainer">
+                <Grid>
+                    <div className="homeHeader">
+                        <div className="homeHeader_icon">
+                            <AccountCircleIcon />
                         </div>
+                        <div className="homeHeader_text">
+                            <h4>{Nom}</h4>
+                        </div>
+                        <div className="homeHeader_notificationIcon">
+                            <NotificationsActiveIcon />
+                        </div>
+                    </div>
                         <div className="homeButton">
                             <div className="homeButton1">
+                                <div className="v">
                                 <Link to="/ReceivedDeliveries">
                                     <Button
                                         variant="contained"
@@ -56,6 +47,7 @@ function Home() {
                                         Commandes Recues
                                     </Button>
                                 </Link>
+                                </div>
                                 <Link to="/historique">
                                     <Button
                                         variant="contained"
@@ -81,8 +73,6 @@ function Home() {
                             </div>
                         </div>
                     </Grid>
-                </Paper>
-            </Grid>
         </div>
     );
 }

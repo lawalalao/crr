@@ -1,11 +1,10 @@
-import React,{useEffect} from "react";
+import React from "react";
 import { Grid, Paper } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
+
 import "./DeliveryStatus.css";
 
 
@@ -14,10 +13,8 @@ import { Link, useHistory } from "react-router-dom";
 function DeliveryStatus({ backButton }) {
     
     const btnstyle = { margin: "15px 0", height: "10vh", width: "250px" , backgroundColor:"#1460BD", color:"#FFFFFF", boxShadow:" 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)"};
-    const user = sessionStorage.getItem('user')
+ 
     
-       
-    const Nom = sessionStorage.getItem('name') 
     const history = useHistory();
     const paperStyle = {
         padding: 15,

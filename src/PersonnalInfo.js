@@ -2,10 +2,9 @@ import React from "react";
 
 import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
-
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import "./Personnalnfo.css";
 import {deliveryManInfo} from "./api";
 
@@ -27,18 +26,11 @@ function PersonnalInfo({ backButton }) {
     const Numero = sessionStorage.getItem('Numero') 
     const DateNaiss = sessionStorage.getItem('DateNaiss') 
     const history = useHistory();
-    const paperStyle = {
-        padding: 15,
-        height: "90vh",
-        width: 290,
-        margin: "20px auto",
-        backgroundColor: "white",
-    };
+
     return (
-        <div>
-            <Grid>
-                <Paper elevation={24} style={paperStyle}>
-                    <Grid align="center">
+        <div className="container">
+            
+                    <Grid>
                         <div className="header">
                             {backButton ? (
                                 <IconButton
@@ -59,24 +51,46 @@ function PersonnalInfo({ backButton }) {
                                     </IconButton>
                                 </Link>
                             )}
-                            <Link to="/home">
+                          
                                 <IconButton className="iconperson">
                                     <AccountCircleIcon />
                                     <p>{Nom}</p>
                                 </IconButton>
-                            </Link>
+                           
                         </div>
-                        <h1>Informations personnelles</h1>
-                        <div className="personnalInfo">
-                            <h3>Nom: {Nom}</h3>
-                            <h3>Prenom: {Prenom}</h3>
-                            <h3>Sexe: {Sexe}</h3>
-                            <h3>Numero: {Numero}</h3>
-                            <h3>Date de Naissance: {DateNaiss}</h3>
+                        <div>
+                            
+                            <h1 className="title">
+                                Informations personnelles
+                            </h1>
+                            <div className="personnalInfo">
+                                <div className="c1">
+                                    <h3> Nom: </h3>
+                                    <h3>{Nom}</h3>
+                                    
+                                </div>
+                                <div className="c1">
+                                    <h3> Prenom: </h3>
+                                    <h3>{Prenom}</h3>
+                                    
+                                </div>
+                                <div className="c1">
+                                    <h3> Sexe: </h3> 
+                                    <h3> {Sexe}</h3>
+                                </div>
+                                <div className="c1">
+                                    <h3>Numero :</h3>
+                                    <h3>{Numero}</h3>
+                                </div>
+                                <div className="c1">
+                                    <h3>Naiss:</h3>
+                                    <h3> {DateNaiss}</h3>
+                                </div>
+                               
+                            </div>
                         </div>
                     </Grid>
-                </Paper>
-            </Grid>
+           
         </div>
     );
 }
