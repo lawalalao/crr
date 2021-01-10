@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import {
     Grid,
-    Paper,
     Avatar,
     TextField,
     Button
 } from "@material-ui/core";
-import ok from './image/4.png'
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
+import ok from "./image/chapchap-logo-vert-light.png";
 import "./Authentification.css";
 import { useHistory } from "react-router-dom";
 import {authenticate} from "./api";
@@ -43,58 +41,51 @@ const Authentification = () => {
         
     }
   
-    const paperStyle = {
-        padding:20,
-        height: "90vh",
-        width: 290,
-        backgroundColor: "white",
-        margin: "20px auto",
-        color:"#1460BD"
-    };
-    
-    const imgstyle = {width:"100%", height:"35vh"}
-    const avatarStyle = { backgroundColor: "#1460BD", marginTop: "5px", top: "10%", left: "40%" };
-    const btnstyle = { margin: "15px 0", marginTop: "20px" ,backgroundColor:"#1460BD" , borderRadius: "12px",  boxShadow: "0 9px #FFFFFF", height:"7vh", fontSize:"20px"};
+
+    const imgstyle ={width:"60%", height:"35vh", marginLeft:"60px"}
+    const avatarStyle = { backgroundColor: "#1460BD", marginTop: "-20px", left: "40%" };
+    const btnstyle = { margin: "15px 0", marginTop: "20px" ,backgroundColor:"#1460BD" , borderRadius: "12px", height:"7vh", fontSize:"20px"};
     const txtstyle = {
         marginTop: "25px",
-        color:"white"
+        color:"white",
+        backgroundColor:"white",
+        opacity:0.8,
+        borderRadius: "18px"
     };
     
 
     return (
-        <Grid>
-            <Paper elevation={24} style={paperStyle}>
-                <Grid align="center">
-                    
-                        <div className="container">
-                            <div className="ok">
-                            <img src={ok} alt="Snow" style={imgstyle}/>
-                            </div>
-                                    <Avatar style={avatarStyle}>
+          <div className="authContainer">
+                <Grid>
+                    <div style={imgstyle}>
+                        <img src={ok} alt="ok"/>
+                    </div>
+                    <Avatar style={avatarStyle}>
                                         <LockOutlinedIcon />
                                     </Avatar>
                                     <h3 className="loginSubtitle">
                                         Connexion
                                     </h3>
                                
-                        </div>
+                
                         
-                </Grid>
+               
                 
                 <div className="loginForm">
                     <TextField
                         label="Utilisateur"
-                        variant="filled"
+                        variant="outlined"
                         placeholder="Entrez votre numero de telephone"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        style={txtstyle}
                         fullWidth
                         required
                         
                     />
                     <TextField
                         label="Mot de passe"
-                        variant="filled"
+                        variant="outlined"
                         placeholder="Entrez votre mot de passe"
                         value={password}
                         style={txtstyle}
@@ -120,8 +111,9 @@ const Authentification = () => {
                 <div className="loginError">
                     {(formError !== "") ?  alert("identifiants incorrects") :""}
                 </div>
-            </Paper>
+           
         </Grid>
+        </div>
     );
     
 };
