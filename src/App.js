@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 import Authentification from "./Authentification";
 import Home from "./home";
-import Header from "./Header";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ReceivedDeliveries from "./ReceivedDeliveries";
 import Delivery from "./Delivery";
 import PersonnalInfo from "./PersonnalInfo";
