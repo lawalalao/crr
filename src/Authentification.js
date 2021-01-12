@@ -11,6 +11,7 @@ import "./Authentification.css";
 import { useHistory } from "react-router-dom";
 import {authenticate} from "./api";
 
+
 const Authentification = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +23,7 @@ const Authentification = () => {
 
         event.preventDefault();
 
-  authenticate(username, password).then(data => {
+        authenticate(username, password).then(data => {
             const Token = data.token
             if (Token) {
                 localStorage.setItem('token', data.token)
@@ -36,11 +37,7 @@ const Authentification = () => {
             }
             
         })
-      
-    
-        
     }
-  
 
     const imgstyle ={width:"60%", height:"35vh", marginLeft:"60px"}
     const avatarStyle = { backgroundColor: "#1460BD", marginTop: "-20px", left: "40%" };

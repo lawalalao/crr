@@ -62,7 +62,7 @@ function History({ backButton }) {
                                 </IconButton>
                             </Link>
                         </div>
-                        <h1 className="historyTitle"></h1>
+                     
                         <div className="table-wrap">
                             <div className="table-responsive-wrap">
                                 <div className="tableHistory">

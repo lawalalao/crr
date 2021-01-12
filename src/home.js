@@ -14,10 +14,10 @@ function Home() {
     const user = sessionStorage.getItem('user')
     
     deliveryManInfo(user).then(data =>{
-        sessionStorage.setItem('name', data.firstName)
+        localStorage.setItem('name', data.firstName)
 
     })      
-    const Nom = sessionStorage.getItem('name') 
+    const Nom = localStorage.getItem('name') 
     
 
     return (

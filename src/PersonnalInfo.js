@@ -1,5 +1,5 @@
 import React from "react";
-
+import moment from 'moment';
 import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -9,22 +9,22 @@ import "./Personnalnfo.css";
 import {deliveryManInfo} from "./api";
 
 function PersonnalInfo({ backButton }) {
-    const lawal = sessionStorage.getItem('user')
+    const user = sessionStorage.getItem('user')
   
-    deliveryManInfo(lawal).then(data =>{
+    deliveryManInfo(user).then(data =>{
     
-        sessionStorage.setItem('name', data.firstName)
-        sessionStorage.setItem('Prenom', data.lastName)
-        sessionStorage.setItem('Sex', data.gender)
-        sessionStorage.setItem('Numero', data.phoneNumber)
-        sessionStorage.setItem('DateNaiss', data.birthDate)
+        localStorage.setItem('name', data.firstName)
+        localStorage.setItem('Prenom', data.lastName)
+        localStorage.setItem('Sex', data.gender)
+        localStorage.setItem('Numero', data.phoneNumber)
+        localStorage.setItem('DateNaiss', data.birthDate)
        
     })      
-    const Nom = sessionStorage.getItem('name') 
-    const Prenom = sessionStorage.getItem('Prenom') 
-    const Sexe = sessionStorage.getItem('Sex') 
-    const Numero = sessionStorage.getItem('Numero') 
-    const DateNaiss = sessionStorage.getItem('DateNaiss') 
+    const Nom = localStorage.getItem('name') 
+    const Prenom = localStorage.getItem('Prenom') 
+    const Sexe = localStorage.getItem('Sex') 
+    const Numero = localStorage.getItem('Numero') 
+    const DateNaiss = localStorage.getItem('DateNaiss') 
     const history = useHistory();
 
     return (
@@ -83,8 +83,8 @@ function PersonnalInfo({ backButton }) {
                                     <h3>{Numero}</h3>
                                 </div>
                                 <div className="c1">
-                                    <h3>Naiss:</h3>
-                                    <h3> {DateNaiss}</h3>
+                                    <h3>Naissance:</h3>
+                                    <h3> {moment(DateNaiss).format('DD-MM-YYYY')}</h3>
                                 </div>
                                
                             </div>
