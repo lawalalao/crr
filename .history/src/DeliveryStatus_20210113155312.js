@@ -18,27 +18,16 @@ function DeliveryStatus({ backButton }) {
         event.preventDefault();
         deliveryStatus(user,deliveries).then(data => {
             console.log(data)
-            console.log("colis recupere")
         })
     }
     function onDelivery (event){
         event.preventDefault();
-        deliveryStatus(user,deliveries).then(data => {
-            console.log("colis en cours de livraison")
-        })
     }
     function colisNonLivre (event){
         event.preventDefault();
-        deliveryStatus(user,deliveries).then(data => {
-            console.log("colis non Livre")
-        })
     }
     function colisLivre (event){
         event.preventDefault();
-        deliveryStatus(user,deliveries).then(data => {
-            console.log(data)
-            console.log("colis Livre")
-        })
     }
     const btnstyle = { margin: "15px 0", height: "10vh", width: "250px" , backgroundColor:"#1460BD", color:"#FFFFFF", boxShadow:" 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)"};
     const history = useHistory();

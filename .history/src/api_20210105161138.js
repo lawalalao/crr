@@ -33,16 +33,3 @@ export const deliveryManHistory = async (deliveryManId) => {
 	})
 	return resp.json()	
 }
-export const deliveryStatus = async (deliveryManId,deliveries) => {
-	const resp = await fetch(process.env.REACT_APP_CHAP_CHAP_API_BASE_URL + "/delivery_men/" +deliveryManId,  {
-		method: "PATCH",
-		headers: {
-			'Content-Type': 'application/merge-patch+json',
-			'Authorization': 'Bearer ' + localStorage.getItem('token')
-		},
-		body: JSON.stringify({
-			"deliveries": deliveries
-		})
-	})
-	return resp.json()	
-}

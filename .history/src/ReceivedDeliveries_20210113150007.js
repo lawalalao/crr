@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
@@ -12,18 +12,13 @@ function ReceivedDeliveries({ backButton }) {
     const [destination, setDestination] = useState("")
     const [company,setCompany] = useState({})
     const user = sessionStorage.getItem('user')
-    useEffect(() => {
     deliveryManHistory(user).then(data =>{
+        console.log(data["hydra:member"][0])
         setOrigin(data["hydra:member"][0].origin)
         setDestination(data["hydra:member"][0].destination)
         setCompany(data["hydra:member"][0].company) 
         setReceiver(data["hydra:member"][0].receiver)
     })
-    const interval = setInterval(() => {
-            deliveryManHistory(user)
-        },10000)
-        return() => clearInterval(interval)
-    },);
     const history = useHistory();
     const btnstyle = { margin: "15px 0", height: "8vh", width: "250px" };
 

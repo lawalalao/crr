@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
@@ -7,23 +7,17 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Grid} from "@material-ui/core";
 import {deliveryManHistory} from "./api"
 function ReceivedDeliveries({ backButton }) {
-    const [receiver, setReceiver] = useState({})
-    const [origin, setOrigin] = useState("")
-    const [destination, setDestination] = useState("")
-    const [company,setCompany] = useState({})
     const user = sessionStorage.getItem('user')
-    useEffect(() => {
     deliveryManHistory(user).then(data =>{
-        setOrigin(data["hydra:member"][0].origin)
-        setDestination(data["hydra:member"][0].destination)
-        setCompany(data["hydra:member"][0].company) 
-        setReceiver(data["hydra:member"][0].receiver)
+        console.log(data["hydra:member"][0])
+        sessionStorage.setItem("origin", data["hydra:member"][0].origin )
+        sessionStorage.setItem("Destination", data["hydra:member"][0].destination )
+        sessionStorage.setItem("company", data["hydra:member"][0].company.name )
     })
-    const interval = setInterval(() => {
-            deliveryManHistory(user)
-        },10000)
-        return() => clearInterval(interval)
-    },);
+
+    const origin = sessionStorage.getItem("origin")
+    const Destination = sessionStorage.getItem("Destination")
+    const company = sessionStorage.getItem("company")
     const history = useHistory();
     const btnstyle = { margin: "15px 0", height: "8vh", width: "250px" };
 
@@ -62,11 +56,8 @@ function ReceivedDeliveries({ backButton }) {
                         <h1>Details commandes</h1>
                         <p>vous avez recu une livraison</p>
                         <p>Origin: {origin} </p>
-                        <p>Destination : {destination}</p>
-                        <p>company : {company.name}</p>
-                        <p>client : {receiver.firstName}</p>
-                        <p>Telephone : {receiver.phoneNumber}</p>
-                        <p>Whatsapp: {receiver.whatsappNumber}</p>
+                        <p>Destination : {Destination}</p>
+                        <p>company : {company}</p>
                         <div>
                             <Link to="/DeliveryStatus">
                                 <Button

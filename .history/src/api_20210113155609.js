@@ -41,7 +41,7 @@ export const deliveryStatus = async (deliveryManId,deliveries) => {
 			'Authorization': 'Bearer ' + localStorage.getItem('token')
 		},
 		body: JSON.stringify({
-			"deliveries": deliveries
+			"deliveries": deliveries,
 		})
 	})
 	return resp.json()	

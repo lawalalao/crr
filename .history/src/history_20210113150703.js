@@ -13,15 +13,21 @@ function History({ backButton }) {
     const [deliveries, setDeliveries] = useState([])
 
     const user = sessionStorage.getItem('user')
+  
+        
+ 
     useEffect(() => {
         deliveryManHistory(user).then(data =>{
+ 
         setDeliveries(data["hydra:member"])
-        })
+       })
         const interval = setInterval(() => {
             deliveryManHistory(user)
         },10000)
         return() => clearInterval(interval)
     },[]);
+
+   
 
     const history = useHistory();
     return (

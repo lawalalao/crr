@@ -14,6 +14,7 @@ function ReceivedDeliveries({ backButton }) {
     const user = sessionStorage.getItem('user')
     useEffect(() => {
     deliveryManHistory(user).then(data =>{
+        console.log(data["hydra:member"][0])
         setOrigin(data["hydra:member"][0].origin)
         setDestination(data["hydra:member"][0].destination)
         setCompany(data["hydra:member"][0].company) 
