@@ -1,0 +1,67 @@
+.statusContainer{
+    padding: 20px;
+    background-image: url(./image/5.jpeg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+}
+.statusButton{
+    margin-left: 25px;
+    margin-top:35px;
+}
+.oki{
+     margin: 15px 0;
+     height: 8vh;
+     width: 100px;
+     background-color:#1460BD;
+     color:#FFFFFF;
+        
+         position: relative;
+    
+         margin-bottom: 25px;
+         border-radius: 32px;
+         text-align: center;
+         cursor: pointer;
+         transition: all 0.1s ease-in-out;}
+        .oki:nth-child(1) {
+             box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                 6px 6px 10px rgba(0, 0, 0, 0.2);
+             color: #6f6cde;}
+
+             .oki:hover {
+                 opacity: 0.3;
+                 box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                     6px 6px 10px rgba(0, 0, 0, 0.2);
+             }
+
+             .oki:active {
+                 opacity: 1;
+                 box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
+                     inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+                 color: #79e3b6;
+             }
+
+         .oki:nth-child(2) {
+             opacity: 0.3;
+             box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                 6px 6px 10px rgba(0, 0, 0, 0.2);
+             color: #6f6cde;
+         }
+
+         .oki:nth-child(3) {
+             box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
+                 inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+             color: #79e3b6;}
+             .oki:hover {
+                 opacity: 1;
+                 box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+                     6px 6px 10px rgba(0, 0, 0, 0.2);
+             }
+
+
+.oki:hover {
+   background-color: #4CAF50;
+}

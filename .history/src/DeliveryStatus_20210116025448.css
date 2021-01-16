@@ -1,0 +1,24 @@
+.statusContainer{
+    padding: 20px;
+    background-image: url(./image/5.jpeg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+    width: 100%;
+    height: 100vh;
+}
+.statusButton{
+    margin-left: 25px;
+    margin-top:35px;
+}
+button{
+     margin: 15px 0;
+     height: 10vh;
+     width: 250px;
+     background-color:#1460BD;
+     color:#FFFFFF;
+}
+#firstbutton:hover {
+   background-color:#020b16;
+}
