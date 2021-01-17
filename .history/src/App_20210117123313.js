@@ -26,7 +26,7 @@ function App() {
                     <Route path="/CommandeEnCours">
                         <OnProgressDelivery backButton="/home" />
                     </Route>
-                    <Route path="/DeliveryInformation">
+                    <Route path="/Delivery">
                         <DeliveryInformation backButton="/ReceivedDeliveries" />
                     </Route>
                     <Route path="/DeliveryStatus">
