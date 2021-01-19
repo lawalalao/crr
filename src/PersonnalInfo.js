@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import moment from 'moment';
 import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,21 +10,22 @@ import {deliveryManInfo} from "./api";
 
 function PersonnalInfo({ backButton }) {
     const user = sessionStorage.getItem('user')
-  
-    deliveryManInfo(user).then(data =>{
-    
-        localStorage.setItem('name', data.firstName)
-        localStorage.setItem('Prenom', data.lastName)
-        localStorage.setItem('Sex', data.gender)
-        localStorage.setItem('Numero', data.phoneNumber)
-        localStorage.setItem('DateNaiss', data.birthDate)
-       
-    })      
-    const Nom = localStorage.getItem('name') 
-    const Prenom = localStorage.getItem('Prenom') 
-    const Sexe = localStorage.getItem('Sex') 
-    const Numero = localStorage.getItem('Numero') 
-    const DateNaiss = localStorage.getItem('DateNaiss') 
+    const [name, setName] = useState("")
+    const [prenoms, setPrenoms] = useState("")
+    const [sex, setSex] = useState("")
+    const [numero, setNumero] = useState("")
+    const [dateDeNaissance, setDateDeNaissance] = useState("")
+
+    useEffect(() => {
+        deliveryManInfo(user).then(data =>{
+            setName(data.lastName)
+            setPrenoms(data.firstName)
+            setSex(data.gender)
+            setNumero(data.phoneNumber)
+            setDateDeNaissance(data.birthDate)
+        })
+    }, [])
+
     const history = useHistory();
 
     return (
@@ -54,7 +55,7 @@ function PersonnalInfo({ backButton }) {
                           
                                 <IconButton className="iconperson">
                                     <AccountCircleIcon />
-                                    <p>{Nom}</p>
+                                    <p>{name}</p>
                                 </IconButton>
                            
                         </div>
@@ -66,25 +67,25 @@ function PersonnalInfo({ backButton }) {
                             <div className="personnalInfo">
                                 <div className="c1">
                                     <h3> Nom: </h3>
-                                    <h3>{Nom}</h3>
+                                    <h3>{name}</h3>
                                     
                                 </div>
                                 <div className="c1">
                                     <h3> Prenom: </h3>
-                                    <h3>{Prenom}</h3>
+                                    <h3>{prenoms}</h3>
                                     
                                 </div>
                                 <div className="c1">
                                     <h3> Sexe: </h3> 
-                                    <h3> {Sexe}</h3>
+                                    <h3> {sex}</h3>
                                 </div>
                                 <div className="c1">
                                     <h3>Numero :</h3>
-                                    <h3>{Numero}</h3>
+                                    <h3>{numero}</h3>
                                 </div>
                                 <div className="c1">
                                     <h3>Naissance:</h3>
-                                    <h3> {moment(DateNaiss).format('DD-MM-YYYY')}</h3>
+                                    <h3> {moment(dateDeNaissance).format('DD-MM-YYYY')}</h3>
                                 </div>
                                
                             </div>

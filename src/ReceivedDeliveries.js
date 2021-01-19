@@ -15,10 +15,6 @@ function ReceivedDeliveries({ backButton }) {
             setDeliveries(data)
         
         })
-        const interval = setInterval(() => {
-            deliveryManDeliveries("STATUS_PROCESSING_PARCEL_DELIVERY_REQUEST")
-        },10000)
-        return() => clearInterval(interval)
     },[]);
  
     const history = useHistory();
@@ -64,7 +60,7 @@ function ReceivedDeliveries({ backButton }) {
                                             <td onClick ={()=>{
                                                 console.log(delivery.code)
                                                 sessionStorage.setItem("code", delivery.code)
-                                                history.push('./Delivery')
+                                                history.push('./DeliveryInformation')
                                             }}>{delivery.code}</td>
                                             <td>{delivery.company.name}</td>
                                         </tr>

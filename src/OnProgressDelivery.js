@@ -5,6 +5,8 @@ import {Link, useHistory } from "react-router-dom";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import {deliveryManOnProgressDeliveries} from './api'
 import "./OnProgressDelivery.css"
+
+
 function OnProgressDelivery({ backButton }) {
     const history = useHistory();
     const [deliveries, setDeliveries] = useState([])
@@ -13,12 +15,7 @@ function OnProgressDelivery({ backButton }) {
         deliveryManOnProgressDeliveries(status).then(data =>{
             setDeliveries(data)
             console.log(setDeliveries)
-        
         })
-        const interval = setInterval(() => {
-            deliveryManOnProgressDeliveries(status)
-        },10000)
-        return() => clearInterval(interval)
     },[]);
     return (
         <div className="container">
@@ -58,7 +55,14 @@ function OnProgressDelivery({ backButton }) {
                                     </thead>
                                     <tbody>
                                     {deliveries.map(delivery =>(
-                                        <tr key={delivery.id}>
+                                        <tr
+                                            key={delivery.id}
+                                            onClick ={()=>{
+                                                console.log(delivery.code)
+                                                sessionStorage.setItem("code", delivery.code)
+                                                history.push('/CurrentDeliveryInformation/' + delivery.code)
+                                            }}
+                                        >
                                             <td>{delivery.code}</td>
                                             <td>{delivery.statusToString}</td>
                                         </tr>

@@ -10,8 +10,9 @@ import {deliveryInformation} from "./api"
 import {updateDeliveryStatus} from './api.js'
 import { deliveryStatusStateMachine, deliveryStatusConstants } from './constants'
 
-function DeliveryInformation({ backButton }) {
 
+function CurrentDeliveryInformation({match, backButton, ...props}) {
+    const {deliveryCode: deliveryCode} = match.params
     const [receiver, setReceiver] = useState({})
     const [origin, setOrigin] = useState("")
     const [destination, setDestination] = useState("")
@@ -19,35 +20,58 @@ function DeliveryInformation({ backButton }) {
     const [code, setCode] = useState("")
     const [status, setStatus] = useState("")
     const [statusToString, setStatusToString] = useState("")
-    const deliveryCode = sessionStorage.getItem('code')
     
     useEffect(() => {
-        deliveryInformation(deliveryCode).then(data => {
+        deliveryInformation(deliveryCode).then(data =>{
+            console.log(data, 'datadatadatadatadata')
             setCode(data.code)
             setCompany(data.company)
             setOrigin(data.origin)
             setDestination(data.destination)
-            setStatus(data.status)
             setReceiver(data.receiver)
+            setStatus(data.status)
             setStatusToString(data.statusToString)
     })
     },[deliveryCode]);
 
-    const handleDeliveryStatusUpdate = () => {
-        updateDeliveryStatus(code, deliveryStatusConstants.STATUS_COLLECTING_PARCEL).then(data =>{
-            history.push('/CurrentDeliveryInformation/' + data.code)
+    const handleDeliveryStatusUpdate = (status) => {
+        updateDeliveryStatus(code, status).then(data => {
+            setStatus(data.status)
+            setStatusToString(data.statusToString)
         })
     }
 
     const history = useHistory();
-    const btnstyle = { margin: "15px 0", height: "8vh", width: "250px" };
-    
+    const btnStyle = { margin: "15px 0", height: "8vh", width: "250px" };
+
+
+    const renderDeliveryStatusButtons = (currentDeliveryStatus) => {
+        console.log(currentDeliveryStatus, 'currentDeliveryStatuscurrentDeliveryStatuscurrentDeliveryStatus')
+        const currentStateMachineStatus = deliveryStatusStateMachine[currentDeliveryStatus]
+
+        return currentStateMachineStatus.nextStates.map((state) => {
+            return <StatusBtn key={state.value} status={state.value} label={state.btnValue} />
+        })
+    }
+
+    const StatusBtn = ({status, label}) => {
+        return (
+            <Button
+                onClick={() => handleDeliveryStatusUpdate(status)}
+                variant="contained"
+                size="large"
+                color="default"
+                style={btnStyle}
+            >
+                {label}
+            </Button>
+        )
+    }
 
     return (
         <div className="homeContainer1">
                     <Grid align="center">
                         <div className="header">
-                            {backButton ? (
                                 <IconButton
                                     onClick={() => history.replace(backButton)}
                                 >
@@ -56,16 +80,6 @@ function DeliveryInformation({ backButton }) {
                                         fontSize="large"
                                     />
                                 </IconButton>
-                            ) : (
-                                <Link to="/ReceivedDeliveries">
-                                    <IconButton>
-                                        <ArrowBackIosIcon
-                                            className="header__icon"
-                                            fontSize="large"
-                                        />
-                                    </IconButton>
-                                </Link>
-                            )}
                         </div>
                         
                         {code ? <h1>Details commandes N : {code} </h1> : ""}
@@ -73,25 +87,18 @@ function DeliveryInformation({ backButton }) {
                     
                         {origin ? <p>Origin: {origin} </p> : ""}
                         {destination ? <p>Destination : {destination}</p> :""}
-                        {statusToString ? <p>Status : {statusToString}</p> : ""}
+                        {statusToString ? <p>status: : {statusToString}</p> :""}
                         {company.name ? <p>company : {company.name}</p> : ""}
                         {receiver.firstName ? <p>client : {receiver.firstName} </p> : ""}
                         {receiver.phoneNumber ? <p>Telephone : {receiver.phoneNumber}</p> : ""}
                         {receiver.whatsappNumber ? <p>Whatsapp: {receiver.whatsappNumber}</p> : ""}
                         <div>
-                                <Button
-                                    onClick={handleDeliveryStatusUpdate}
-                                    variant="contained"
-                                    size="large"
-                                    color="default"
-                                    style={btnstyle}
-                                >
-                                  Demarrer la course
-                                </Button>
+                            {(status === deliveryStatusConstants.STATUS_PARCEL_DELIVERED) ?
+                                "Bravo vous venez de complétez une livraison" : (status && renderDeliveryStatusButtons(status))}
                         </div>
                     </Grid>
         </div>
     );
 }
 
-export default DeliveryInformation;
+export default CurrentDeliveryInformation;

@@ -11,6 +11,7 @@ import Setting from "./Setting";
 import History from "./history";
 import DeliveryStatus from "./DeliveryStatus";
 import OnProgressDelivery from "./OnProgressDelivery"
+import CurrentDeliveryInformation from "./CurrentDeliveryInformation";
 function App() {
     return (
         <div>
@@ -29,6 +30,9 @@ function App() {
                     <Route path="/DeliveryInformation">
                         <DeliveryInformation backButton="/ReceivedDeliveries" />
                     </Route>
+                    <Route path="/CurrentDeliveryInformation/:deliveryCode" component={(props) =>
+                        <CurrentDeliveryInformation backButton="/CommandeEnCours" {...props} />}
+                    />
                     <Route path="/DeliveryStatus">
                         <DeliveryStatus backButton="/ReceivedDeliveries" />
                     </Route>
