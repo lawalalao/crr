@@ -10,9 +10,6 @@
     
 
 }
-.header__icon{
-    color:white;
-}
 .c1{
     display:flex;
   
@@ -30,7 +27,7 @@
     
     text-transform: uppercase;
 }
-.circleIcon {
+.iconperson {
     color:white;
 }
 .iconperson p {

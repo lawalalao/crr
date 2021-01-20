@@ -13,7 +13,7 @@
 .header__icon{
     color:white;
 }
-.c1{
+.prenomInfo{
     display:flex;
   
     margin-top: 40px;
@@ -23,7 +23,7 @@
     border: 2px solid black;
     border-radius: 10px;
 }
-.c1 h3{
+.prenomInfo h3{
     color:white;
     text-align: center;
     padding: 10px;

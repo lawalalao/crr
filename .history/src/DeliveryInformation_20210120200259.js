@@ -4,15 +4,14 @@ import IconButton from "@material-ui/core/IconButton";
 
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import "./CurrentDeliveryInformation.css"
+import "./DeliveryInformation.css"
 import { Grid} from "@material-ui/core";
 import {deliveryInformation} from "./api"
 import {updateDeliveryStatus} from './api.js'
-import { deliveryStatusStateMachine, deliveryStatusConstants } from './constants'
+import {deliveryStatusConstants } from './constants'
 
+function DeliveryInformation({ backButton }) {
 
-function CurrentDeliveryInformation({match, backButton, ...props}) {
-    const {deliveryCode: deliveryCode} = match.params
     const [receiver, setReceiver] = useState({})
     const [origin, setOrigin] = useState("")
     const [destination, setDestination] = useState("")
@@ -20,58 +19,35 @@ function CurrentDeliveryInformation({match, backButton, ...props}) {
     const [code, setCode] = useState("")
     const [status, setStatus] = useState("")
     const [statusToString, setStatusToString] = useState("")
+    const deliveryCode = sessionStorage.getItem('code')
     
     useEffect(() => {
-        deliveryInformation(deliveryCode).then(data =>{
-            console.log(data, 'datadatadatadatadata')
+        deliveryInformation(deliveryCode).then(data => {
             setCode(data.code)
             setCompany(data.company)
             setOrigin(data.origin)
             setDestination(data.destination)
-            setReceiver(data.receiver)
             setStatus(data.status)
+            setReceiver(data.receiver)
             setStatusToString(data.statusToString)
     })
     },[deliveryCode]);
 
-    const handleDeliveryStatusUpdate = (status) => {
-        updateDeliveryStatus(code, status).then(data => {
-            setStatus(data.status)
-            setStatusToString(data.statusToString)
+    const handleDeliveryStatusUpdate = () => {
+        updateDeliveryStatus(code, deliveryStatusConstants.STATUS_COLLECTING_PARCEL).then(data =>{
+            history.push('/CurrentDeliveryInformation/' + data.code)
         })
     }
 
     const history = useHistory();
-    const btnStyle = { margin: "15px 0", height: "8vh", width: "250px" };
-
-
-    const renderDeliveryStatusButtons = (currentDeliveryStatus) => {
-        console.log(currentDeliveryStatus, 'currentDeliveryStatuscurrentDeliveryStatuscurrentDeliveryStatus')
-        const currentStateMachineStatus = deliveryStatusStateMachine[currentDeliveryStatus]
-
-        return currentStateMachineStatus.nextStates.map((state) => {
-            return <StatusBtn key={state.value} status={state.value} label={state.btnValue} />
-        })
-    }
-
-    const StatusBtn = ({status, label}) => {
-        return (
-            <Button
-                onClick={() => handleDeliveryStatusUpdate(status)}
-                variant="contained"
-                size="large"
-                color="default"
-                style={btnStyle}
-            >
-                {label}
-            </Button>
-        )
-    }
+    const btnstyle = { margin: "15px 0", height: "8vh", width: "250px" };
+    
 
     return (
         <div className="homeContainer1">
                     <Grid align="center">
                         <div className="header">
+                            {backButton ? (
                                 <IconButton
                                     onClick={() => history.replace(backButton)}
                                 >
@@ -80,15 +56,31 @@ function CurrentDeliveryInformation({match, backButton, ...props}) {
                                         fontSize="large"
                                     />
                                 </IconButton>
+                            ) : (
+                                <Link to="/ReceivedDeliveries">
+                                    <IconButton>
+                                        <ArrowBackIosIcon
+                                            className="header__icon"
+                                            fontSize="large"
+                                        />
+                                    </IconButton>
+                                </Link>
+                            )}
                         </div>
                         <div className="info">
-                           <div className="table-wrap">
+                            <div className="infoParagraph">
+                                <div className="table-wrap">
                                     <div className="table-responsive-wrap">
                                     <div className="tableHistory">
                                         <table className="table">
                                             <thead>
-                                             
-                                               
+                                                 {code ? 
+                                                    <tr>
+                                                        {code}
+                                                    </tr> : ""
+                                                }
+                                                <tr>
+                                                </tr>
                                             </thead>
                                             <tbody>
                                                 {code ? 
@@ -145,13 +137,21 @@ function CurrentDeliveryInformation({match, backButton, ...props}) {
                                     </div>
                                 </div>
                             </div>
-                        <div className="message" >
-                            {(status === deliveryStatusConstants.STATUS_PARCEL_DELIVERED) ?
-                                "Bravo vous venez de complétez une livraison" : (status && renderDeliveryStatusButtons(status))}
+                        </div>
+                        <div>
+                                <Button
+                                    onClick={handleDeliveryStatusUpdate}
+                                    variant="contained"
+                                    size="large"
+                                    color="default"
+                                    style={btnstyle}
+                                >
+                                  Demarrer la course
+                                </Button>
                         </div>
                     </Grid>
         </div>
     );
 }
 
-export default CurrentDeliveryInformation;
+export default DeliveryInformation;

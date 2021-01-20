@@ -65,25 +65,25 @@ function PersonnalInfo({ backButton }) {
                                 Informations personnelles
                             </h1>
                             <div className="personnalInfo">
-                                <div className="c1">
+                                <div className="info">
                                     <h3> Nom: </h3>
                                     <h3>{name}</h3>
                                     
                                 </div>
-                                <div className="c1">
+                                <div className="info">
                                     <h3> Prenom: </h3>
                                     <h3>{prenoms}</h3>
                                     
                                 </div>
-                                <div className="c1">
+                                <div className="info">
                                     <h3> Sexe: </h3> 
                                     <h3> {sex}</h3>
                                 </div>
-                                <div className="c1">
+                                <div className="info">
                                     <h3>Numero :</h3>
                                     <h3>{numero}</h3>
                                 </div>
-                                <div className="c1">
+                                <div className="info">
                                     <h3>Naissance:</h3>
                                     <h3> {moment(dateDeNaissance).format('DD-MM-YYYY')}</h3>
                                 </div>

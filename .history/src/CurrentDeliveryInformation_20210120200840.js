@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 import Button from "@material-ui/core/Button";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import "./CurrentDeliveryInformation.css"
+import "./DeliveryInformation.css"
 import { Grid} from "@material-ui/core";
 import {deliveryInformation} from "./api"
 import {updateDeliveryStatus} from './api.js'

@@ -70,7 +70,7 @@ function PersonnalInfo({ backButton }) {
                                     <h3>{name}</h3>
                                     
                                 </div>
-                                <div className="c1">
+                                <div className="prenomInfo">
                                     <h3> Prenom: </h3>
                                     <h3>{prenoms}</h3>
                                     

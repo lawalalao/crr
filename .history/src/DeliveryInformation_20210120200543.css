@@ -32,7 +32,10 @@
     margin-top: 15px;
     text-transform: uppercase;
     color:white;
-
+    background:#1460BD;
+    padding:8px;
+    transition: ease-in ;
+    border: 2px solid;
 }
 .table-wrap {
     background: #FFFFFF;

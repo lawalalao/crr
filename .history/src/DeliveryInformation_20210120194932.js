@@ -68,22 +68,20 @@ function DeliveryInformation({ backButton }) {
                             )}
                         </div>
                         <div className="info">
+                            {code ? <h1>Commandes N : {code} </h1> : ""}
+                        
                             <div className="infoParagraph">
                                 <div className="table-wrap">
                                     <div className="table-responsive-wrap">
                                     <div className="tableHistory">
                                         <table className="table">
                                             <thead>
-                                             
-                                               
+                                                <tr>
+                                                    <td>#</td>
+                                                    <td>#</td>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                                {code ? 
-                                                    <tr>
-                                                        <td>Numero</td>
-                                                        <td>{code}</td>
-                                                    </tr> : ""
-                                                }
                                                 {origin ? 
                                                     <tr>
                                                         <td>Origin</td>
@@ -102,35 +100,17 @@ function DeliveryInformation({ backButton }) {
                                                         <td>{statusToString}</td>
                                                     </tr> : ""        
                                                 }
-                                                {company.name ?
-                                                    <tr>
-                                                        <td>Entreprise</td>
-                                                        <td>{company.name}</td>
-                                                    </tr> : "" 
-                                                }
-                                                {receiver.firstName ?
-                                                    <tr>
-                                                        <td>Client</td>
-                                                        <td>{receiver.firstName}</td>
-                                                    </tr> : ""  
-                                                }  
-                                                {receiver.phoneNumber ?
-                                                    <tr>
-                                                        <td>Telephone</td>
-                                                        <td>{receiver.phoneNumber}</td>
-                                                    </tr> : ""  
-                                                }  
-                                                {receiver.whatsappNumber ?
-                                                    <tr>
-                                                        <td>Whatsapp</td>
-                                                        <td>{receiver.whatsappNumber}</td>
-                                                    </tr> : ""  
-                                                } 
                                             </tbody>
                                         </table>
                                     </div>
                                     </div>
                                 </div>
+                            
+                            
+                                {company.name ? <p>entreprise : {company.name}</p> : ""}
+                                {receiver.firstName ? <p>client : {receiver.firstName} </p> : ""}
+                                {receiver.phoneNumber ? <p>Telephone : {receiver.phoneNumber}</p> : ""}
+                                {receiver.whatsappNumber ? <p>Whatsapp: {receiver.whatsappNumber}</p> : ""}
                             </div>
                         </div>
                         <div>
