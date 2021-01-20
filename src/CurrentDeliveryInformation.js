@@ -23,7 +23,7 @@ function CurrentDeliveryInformation({match, backButton, ...props}) {
     
     useEffect(() => {
         deliveryInformation(deliveryCode).then(data =>{
-            console.log(data, 'datadatadatadatadata')
+            
             setCode(data.code)
             setCompany(data.company)
             setOrigin(data.origin)
