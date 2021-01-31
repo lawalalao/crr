@@ -17,6 +17,7 @@
         "autoprefixer": "^9.8.6",
         "dotenv": "^8.2.0",
         "file-loader": "^6.2.0",
+        "firebase-tools": "^9.2.2",
         "moment": "^2.29.1",
         "postcss": "^7.0.35",
         "react": "^17.0.1",
